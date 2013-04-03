@@ -1,3 +1,15 @@
+//
+// Copyright (c) 2013 All Right Reserved, Pascal Collberg and the author of CAProvider
+//
+// This source is subject to the General Public License (GPL) v3.
+// Please see the License.txt file for more information.
+// All other rights reserved.
+//
+// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+// KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
 package net.sourceforge.osxmidi4j;
 
 import java.util.List;
@@ -110,7 +122,7 @@ public class CoreMidiDestination implements MidiDevice {
 
     @Override
     public List<Receiver> getReceivers() {
-        // TODO Auto-generated method stub
+        // TODO: Auto-generated method stub
         return null;
     }
 
