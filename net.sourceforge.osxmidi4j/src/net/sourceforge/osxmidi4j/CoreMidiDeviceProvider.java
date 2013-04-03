@@ -78,6 +78,10 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
      */
     final void initRococoa() throws IOException {
         final File libfile = new File("librococoa.dylib");
+        if (libfile.exists()) {
+            // No need to create the file
+            return;
+        }
         libfile.deleteOnExit(); // just in case
 
         final InputStream in =
