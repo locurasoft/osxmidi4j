@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project net.sourceforge.osxmidi4j">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="create_run_jar">
+        <jar destfile="net.sourceforge.osxmidi4j.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="net.sourceforge.osxmidi4j.Main"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${basedir}/bin"/>
+        	<fileset file="${basedir}/librococoa.dylib"/>
+            <zipfileset excludes="META-INF/*.SF" src="${basedir}/lib/log4j-1.2.17.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${basedir}/lib/asm-3.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${basedir}/lib/cglib-2.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${basedir}/lib/slf4j-api-1.5.8.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${basedir}/lib/slf4j-jdk14-1.5.8.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${basedir}/lib/jna-3.5.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${basedir}/lib/rococoa-core-0.5.jar"/>
+        </jar>
+    </target>
+</project>
