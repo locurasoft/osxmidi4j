@@ -17,22 +17,21 @@
 //
 package com.github.osxmidi4j;
 
-
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary;
 import com.github.osxmidi4j.midiservices.MIDIPacketList;
 import com.sun.jna.NativeLong;
 
 public class MidiOutputPort {
 
-    private NativeLong midiPortRef;
+    private final NativeLong midiPortRef;
 
-    public MidiOutputPort(NativeLong midiPortRef) {
+    public MidiOutputPort(final NativeLong midiPortRef) {
         this.midiPortRef = midiPortRef;
     }
 
-    public void send(MidiEndpoint dest, MIDIPacketList plist)
+    public void send(final MidiEndpoint dest, final MIDIPacketList plist)
             throws CoreMidiException {
-        int midiSend =
+        final int midiSend =
                 CoreMidiLibrary.INSTANCE.MIDISend(midiPortRef,
                         dest.getEndpointref(), plist.getPointer());
         if (midiSend != 0) {

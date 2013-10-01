@@ -25,19 +25,19 @@ public class CoreMidiException extends Exception {
         super();
     }
 
-    public CoreMidiException(int errorCode) {
+    public CoreMidiException(final int errorCode) {
         super("Midi Error: " + errorCode);
     }
 
-    public CoreMidiException(String arg0, Throwable arg1) {
+    public CoreMidiException(final String arg0, final Throwable arg1) {
         super(arg0, arg1);
     }
 
-    public CoreMidiException(String arg0) {
+    public CoreMidiException(final String arg0) {
         super(arg0);
     }
 
-    public CoreMidiException(Throwable arg0) {
+    public CoreMidiException(final Throwable arg0) {
         super(arg0);
     }
 

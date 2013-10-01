@@ -44,8 +44,9 @@ public class MIDIObjectAddRemoveNotification extends Structure {
                 "parentType", "child", "childType");
     }
 
-    public MIDIObjectAddRemoveNotification(int messageID, int messageSize,
-            Pointer parent, int parentType, Pointer child, int childType) {
+    public MIDIObjectAddRemoveNotification(final int messageID,
+            final int messageSize, final Pointer parent, final int parentType,
+            final Pointer child, final int childType) {
         super();
         this.messageID = messageID;
         this.messageSize = messageSize;
