@@ -34,20 +34,20 @@ public final class Main {
      * This main class only runs a test to list the found ports by each
      * MidiDeviceProvider
      */
-    public static void main(String[] args) {
-        Logger logger = Logger.getLogger(Main.class);
-        ServiceLoader<MidiDeviceProvider> serviceLoader =
+    public static void main(final String[] args) {
+        final Logger logger = Logger.getLogger(Main.class);
+        final ServiceLoader<MidiDeviceProvider> serviceLoader =
                 ServiceLoader.load(MidiDeviceProvider.class);
-        Iterator<MidiDeviceProvider> iterator = serviceLoader.iterator();
+        final Iterator<MidiDeviceProvider> iterator = serviceLoader.iterator();
         while (iterator.hasNext()) {
-            MidiDeviceProvider midiDeviceProvider =
+            final MidiDeviceProvider midiDeviceProvider =
                     (MidiDeviceProvider) iterator.next();
 
-            Info[] deviceInfo = midiDeviceProvider.getDeviceInfo();
+            final Info[] deviceInfo = midiDeviceProvider.getDeviceInfo();
             logger.info(midiDeviceProvider.getClass().getName() + ": "
                     + deviceInfo.length);
 
-            for (Info info : deviceInfo) {
+            for (final Info info : deviceInfo) {
                 logger.info(info.getName());
             }
             logger.info("---------------\n");

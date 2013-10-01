@@ -39,9 +39,12 @@ public class MIDIPacketList extends Structure {
 
     // CHECKSTYLE:ON
 
-    public static class Factory {
+    public static final class Factory {
+        private Factory() {
+        }
+
         public static MIDIPacketList newInstance() {
-            MIDIPacketList midiPacketList = new MIDIPacketList();
+            final MIDIPacketList midiPacketList = new MIDIPacketList();
             midiPacketList.currPacketPtr =
                     CoreMidiLibrary.INSTANCE.MIDIPacketListInit(midiPacketList
                             .getPointer());
@@ -55,7 +58,7 @@ public class MIDIPacketList extends Structure {
         super();
     }
 
-    public MIDIPacketList(Pointer p) {
+    public MIDIPacketList(final Pointer p) {
         super(p);
     }
 
@@ -64,10 +67,10 @@ public class MIDIPacketList extends Structure {
         return Arrays.asList("numPackets", "packet");
     }
 
-    public void add(MIDIPacket midiPacket) {
-        int length = midiPacket.getLength();
-        byte[] data = midiPacket.getData();
-        long timeStamp = midiPacket.getTimeStamp();
+    public void add(final MIDIPacket midiPacket) {
+        final int length = midiPacket.getLength();
+        final byte[] data = midiPacket.getData();
+        final long timeStamp = midiPacket.getTimeStamp();
         currPacketPtr =
                 CoreMidiLibrary.INSTANCE.MIDIPacketListAdd(getPointer(),
                         new NativeLong(LIST_SIZE), currPacketPtr, timeStamp,
@@ -89,14 +92,14 @@ public class MIDIPacketList extends Structure {
         private MIDIPacket currPacket;
 
         public PacketListIterator() {
-            Pointer expected =
+            final Pointer expected =
                     MIDIPacketList.this.getPointer().share(NUM_PACKETS_SIZE);
-            Pointer actual = MIDIPacketList.this.packet.getPointer();
-            if (!actual.equals(expected)) {
+            final Pointer actual = MIDIPacketList.this.packet.getPointer();
+            if (actual.equals(expected)) {
+                currPacket = MIDIPacketList.this.packet;
+            } else {
                 currPacket = new MIDIPacket(expected);
                 currPacket.read();
-            } else {
-                currPacket = MIDIPacketList.this.packet;
             }
         }
 
@@ -107,21 +110,20 @@ public class MIDIPacketList extends Structure {
 
         @Override
         public MIDIPacket next() {
-            MIDIPacket temp = currPacket;
+            final MIDIPacket temp = currPacket;
             index++;
             if (hasNext()) {
-                Pointer newPointer =
+                final Pointer newPointer =
                         currPacket.getPointer().share(currPacket.getLength());
                 currPacket = new MIDIPacket(newPointer);
                 currPacket.read();
-            } else {
-                currPacket = null;
             }
             return temp;
         }
 
         @Override
         public void remove() {
+            throw new UnsupportedOperationException();
         }
     }
 }

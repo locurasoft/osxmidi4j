@@ -39,14 +39,15 @@ public class MIDIPacket extends Structure {
 
     // CHECKSTYLE:ON
 
-    public MIDIPacket(int bufferSize) {
+    public MIDIPacket(final int bufferSize) {
         super();
         data = new byte[bufferSize];
         length = (short) data.length;
         allocateMemory();
     }
 
-    public MIDIPacket(long timeStamp, short length, byte[] data) {
+    public MIDIPacket(final long timeStamp, final short length,
+            final byte[] data) {
         super();
         this.timeStamp = timeStamp;
         this.length = length;
@@ -58,13 +59,13 @@ public class MIDIPacket extends Structure {
         super();
     }
 
-    public MIDIPacket(Pointer pointer) {
+    public MIDIPacket(final Pointer pointer) {
         super(pointer);
     }
 
-    public MIDIPacket(ShortMessage msg) {
+    public MIDIPacket(final ShortMessage msg) {
         super();
-        byte[] src =
+        final byte[] src =
                 new byte[] {
                         (byte) msg.getStatus(), (byte) msg.getData1(),
                         (byte) msg.getData2() };
@@ -79,7 +80,7 @@ public class MIDIPacket extends Structure {
     }
 
     public byte[] getData() {
-        byte[] buf = new byte[length];
+        final byte[] buf = new byte[length];
         System.arraycopy(data, 0, buf, 0, length);
         return buf;
     }

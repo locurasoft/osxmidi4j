@@ -27,7 +27,6 @@ import javax.sound.midi.Receiver;
 import javax.sound.midi.ShortMessage;
 import javax.sound.midi.SysexMessage;
 
-
 import org.apache.log4j.Logger;
 
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary;
@@ -39,35 +38,38 @@ import com.sun.jna.Pointer;
 
 public class CoreMidiReceiver implements Receiver {
 
-    private final Logger logger = Logger.getLogger(getClass());
-    private MidiEndpoint dest;
-    private Set<Pointer> sendRequests = new HashSet<Pointer>();
+    private static final Logger LOGGER = Logger
+            .getLogger(CoreMidiReceiver.class);
+    private final MidiEndpoint dest;
+    private final Set<Pointer> sendRequests = new HashSet<Pointer>();
 
-    CoreMidiReceiver(MidiEndpoint ep) {
+    CoreMidiReceiver(final MidiEndpoint ep) {
         dest = ep;
     }
 
     public void close() {
+        // Not needed.
     }
 
-    public void send(MidiMessage message, long timeStamp) {
+    public void send(final MidiMessage message, final long timeStamp) {
         try {
             if (dest.getProperty(CoreMidiLibrary.kMIDIPropertyOffline) == 1) {
                 return;
             }
-        } catch (CoreMidiException e) {
-            logger.warn(e.getMessage(), e);
+        } catch (final CoreMidiException e) {
+            LOGGER.warn(e.getMessage(), e);
         }
         try {
             // Don't deal with message directly because of bugs
             if (message instanceof ShortMessage) {
-                ShortMessage m = (ShortMessage) message;
-                MIDIPacketList midiPacketList =
+                final ShortMessage m = (ShortMessage) message;
+                final MIDIPacketList midiPacketList =
                         MIDIPacketList.Factory.newInstance();
                 midiPacketList.add(new MIDIPacket(m));
-                CoreMidiDeviceProvider.getOutputPort().send(dest, midiPacketList);
+                CoreMidiDeviceProvider.getOutputPort().send(dest,
+                        midiPacketList);
             } else if (message instanceof SysexMessage) {
-                SysexMessage m = (SysexMessage) message;
+                final SysexMessage m = (SysexMessage) message;
                 ByteArrayInputStream is = null;
                 if (m.getStatus() == SysexMessage.SPECIAL_SYSTEM_EXCLUSIVE) {
                     is = new ByteArrayInputStream(m.getData());
@@ -75,14 +77,15 @@ public class CoreMidiReceiver implements Receiver {
                     is = new ByteArrayInputStream(m.getMessage());
                 }
 
-                byte[] buf = new byte[MIDIPacket.DATA_SIZE];
+                final byte[] buf = new byte[MIDIPacket.DATA_SIZE];
                 int read = 0;
                 while ((read = is.read(buf)) != -1) {
-                    MIDIPacket midiPacket = new MIDIPacket(timeStamp, (short) read, buf);
-                    MIDISysexSendRequest req =
+                    final MIDIPacket midiPacket =
+                            new MIDIPacket(timeStamp, (short) read, buf);
+                    final MIDISysexSendRequest req =
                             MIDISysexSendRequest.newInstance(dest, midiPacket,
                                     new MIDICompletionCallback());
-                    int midiSendSysex =
+                    final int midiSendSysex =
                             CoreMidiLibrary.INSTANCE.MIDISendSysex(req
                                     .getPointer());
                     if (midiSendSysex != 0) {
@@ -91,17 +94,17 @@ public class CoreMidiReceiver implements Receiver {
                     sendRequests.add(req.getPointer());
                 }
             }
-        } catch (CoreMidiException e) {
-            logger.warn(e.getMessage(), e);
-        } catch (IOException e) {
-            logger.warn(e.getMessage(), e);
+        } catch (final CoreMidiException e) {
+            LOGGER.warn(e.getMessage(), e);
+        } catch (final IOException e) {
+            LOGGER.warn(e.getMessage(), e);
         }
     }
 
     public class MIDICompletionCallback implements MIDICompletionProc {
         @Override
-        public void apply(Pointer request) {
-            logger.debug("Completed: " + request.toString());
+        public void apply(final Pointer request) {
+            LOGGER.debug("Completed: " + request.toString());
             sendRequests.remove(request);
         }
     }

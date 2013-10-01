@@ -17,20 +17,20 @@
 //
 package com.github.osxmidi4j;
 
-
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary;
 import com.sun.jna.NativeLong;
 
 public class MidiInputPort {
 
-    private NativeLong midiPortRef;
+    private final NativeLong midiPortRef;
 
-    public MidiInputPort(NativeLong midiPortRef) {
+    public MidiInputPort(final NativeLong midiPortRef) {
         this.midiPortRef = midiPortRef;
     }
 
-    public void connectSource(MidiEndpoint source) throws CoreMidiException {
-        int midiPortConnectSource =
+    public void connectSource(final MidiEndpoint source)
+            throws CoreMidiException {
+        final int midiPortConnectSource =
                 CoreMidiLibrary.INSTANCE.MIDIPortConnectSource(midiPortRef,
                         source.getEndpointref(), null);
         if (midiPortConnectSource != 0) {
@@ -38,8 +38,9 @@ public class MidiInputPort {
         }
     }
 
-    public void disconnectSource(MidiEndpoint source) throws CoreMidiException {
-        int midiPortDisconnectSource =
+    public void disconnectSource(final MidiEndpoint source)
+            throws CoreMidiException {
+        final int midiPortDisconnectSource =
                 CoreMidiLibrary.INSTANCE.MIDIPortDisconnectSource(midiPortRef,
                         source.getEndpointref());
         if (midiPortDisconnectSource != 0) {

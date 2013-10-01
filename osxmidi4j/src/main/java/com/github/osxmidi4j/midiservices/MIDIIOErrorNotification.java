@@ -42,8 +42,8 @@ public class MIDIIOErrorNotification extends Structure {
                 "errorCode");
     }
 
-    public MIDIIOErrorNotification(int messageID, int messageSize,
-            NativeLong driverDevice, int errorCode) {
+    public MIDIIOErrorNotification(final int messageID, final int messageSize,
+            final NativeLong driverDevice, final int errorCode) {
         super();
         this.messageID = messageID;
         this.messageSize = messageSize;

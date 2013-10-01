@@ -20,8 +20,6 @@ package com.github.osxmidi4j.midiservices;
 import java.util.Arrays;
 import java.util.List;
 
-
-
 import com.github.osxmidi4j.MidiEndpoint;
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary.MIDICompletionProc;
 import com.sun.jna.Memory;
@@ -43,14 +41,14 @@ public class MIDISysexSendRequest extends Structure {
 
     // CHECKSTYLE:ON
 
-    public static MIDISysexSendRequest newInstance(MidiEndpoint dest,
-            MIDIPacket midiPacket, MIDICompletionProc completionProc) {
-        MIDISysexSendRequest newInstance =
+    public static MIDISysexSendRequest newInstance(final MidiEndpoint dest,
+            final MIDIPacket midiPacket, final MIDICompletionProc completionProc) {
+        final MIDISysexSendRequest newInstance =
                 (MIDISysexSendRequest) Structure
                         .newInstance(MIDISysexSendRequest.class);
         newInstance.destination = dest.getEndpointref();
-        int length = midiPacket.getData().length;
-        byte[] buf = midiPacket.getData();
+        final int length = midiPacket.getData().length;
+        final byte[] buf = midiPacket.getData();
         newInstance.data = new Memory(length);
         for (int i = 0; i < length; i++) {
             newInstance.data.setByte(i, buf[i]);
@@ -66,9 +64,5 @@ public class MIDISysexSendRequest extends Structure {
     protected List getFieldOrder() {
         return Arrays.asList("destination", "data", "bytesToSend", "complete",
                 "reserved", "completionProc", "completionRefCon");
-    }
-
-    public MIDISysexSendRequest() {
-        super();
     }
 }
