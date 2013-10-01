@@ -123,7 +123,6 @@ public class CoreMidiDestination implements MidiDevice {
 
     @Override
     public List<Receiver> getReceivers() {
-        // TODO: Auto-generated method stub
         return null;
     }
 

@@ -14,23 +14,20 @@ package com.github.osxmidi4j.midiservices;
 
 import static org.junit.Assert.assertEquals;
 
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.rococoa.Foundation;
 import org.rococoa.ID;
 
-import com.github.osxmidi4j.SendMidiTests;
-import com.github.osxmidi4j.midiservices.CoreMidiLibrary;
-import com.github.osxmidi4j.midiservices.MIDINotification;
+import com.github.osxmidi4j.SendMidiTest;
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary.MIDINotifyProc;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.NativeLongByReference;
 import com.sun.jna.ptr.PointerByReference;
 
-public class CoreMidiLibraryTests {
+public class CoreMidiLibraryTest {
 
     @Before
     public void setUp() throws Exception {
@@ -57,13 +54,13 @@ public class CoreMidiLibraryTests {
     }
 
     @Test
-    public void test1() {
+    public void testNumPorts() {
         NativeLong numberOfDestinations =
                 CoreMidiLibrary.INSTANCE.MIDIGetNumberOfDestinations();
-        assertEquals(SendMidiTests.NUM_PORTS, numberOfDestinations.intValue());
+        assertEquals(SendMidiTest.NUM_PORTS, numberOfDestinations.intValue());
         NativeLong numberOfSources =
                 CoreMidiLibrary.INSTANCE.MIDIGetNumberOfSources();
-        assertEquals(SendMidiTests.NUM_PORTS, numberOfSources.intValue());
+        assertEquals(SendMidiTest.NUM_PORTS, numberOfSources.intValue());
     }
 
     @Test

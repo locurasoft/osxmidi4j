@@ -12,17 +12,13 @@
 //
 package com.github.osxmidi4j;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.osxmidi4j.CoreMidiDeviceProvider;
-import com.github.osxmidi4j.CoreMidiException;
-
-public class CoreMidiDeviceProviderTests {
+public class CoreMidiDeviceProviderTest {
 
     @Before
     public void setUp() throws Exception {

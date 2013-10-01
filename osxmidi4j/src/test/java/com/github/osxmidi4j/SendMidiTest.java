@@ -30,21 +30,17 @@ import javax.sound.midi.ShortMessage;
 import javax.sound.midi.SysexMessage;
 import javax.sound.midi.Transmitter;
 
-
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.osxmidi4j.CoreMidiDestination;
-import com.github.osxmidi4j.CoreMidiDeviceInfo;
-import com.github.osxmidi4j.CoreMidiSource;
 import com.github.osxmidi4j.midiservices.MIDIPacket;
 
-public class SendMidiTests {
+public class SendMidiTest {
 
     private final Logger logger = Logger.getLogger(getClass());
-    public static final int NUM_PORTS = 5;
+    public static final int NUM_PORTS = 4;
 
     @Before
     public void setUp() throws Exception {

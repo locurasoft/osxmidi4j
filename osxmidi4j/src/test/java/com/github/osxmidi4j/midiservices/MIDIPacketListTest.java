@@ -14,15 +14,11 @@ package com.github.osxmidi4j.midiservices;
 
 import javax.sound.midi.ShortMessage;
 
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.osxmidi4j.midiservices.MIDIPacket;
-import com.github.osxmidi4j.midiservices.MIDIPacketList;
-
-public class MIDIPacketListTests {
+public class MIDIPacketListTest {
 
     @Before
     public void setUp() throws Exception {
