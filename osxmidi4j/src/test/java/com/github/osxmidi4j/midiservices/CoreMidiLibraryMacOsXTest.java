@@ -19,6 +19,7 @@ package com.github.osxmidi4j.midiservices;
 
 import static org.junit.Assert.assertEquals;
 
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,10 +33,15 @@ import com.sun.jna.Pointer;
 import com.sun.jna.ptr.NativeLongByReference;
 import com.sun.jna.ptr.PointerByReference;
 
-public class CoreMidiLibraryTest {
+public class CoreMidiLibraryMacOsXTest {
+
+    private static final int LENGTH_BYTE = 16;
+    private static final Logger LOGGER = Logger
+            .getLogger(CoreMidiLibraryMacOsXTest.class);
 
     @Before
     public void setUp() throws Exception {
+
         // Create client
         ID clientName = Foundation.cfString("Client");
         MIDINotifyProc notifyProc = new CoreMidiLibrary.MIDINotifyProc() {
@@ -46,12 +52,12 @@ public class CoreMidiLibraryTest {
         };
         NativeLongByReference nativeLongByReference =
                 new NativeLongByReference();
-        System.out.println(nativeLongByReference.getValue().longValue());
+        LOGGER.info(nativeLongByReference.getValue().longValue());
         int midiClientCreate =
                 CoreMidiLibrary.INSTANCE.MIDIClientCreate(clientName,
                         notifyProc, null, nativeLongByReference);
-        System.out.println(nativeLongByReference.getValue().longValue());
-        System.out.println(midiClientCreate);
+        LOGGER.info(nativeLongByReference.getValue().longValue());
+        LOGGER.info(midiClientCreate);
     }
 
     @After
@@ -72,18 +78,16 @@ public class CoreMidiLibraryTest {
     public void testCFStringReturn() {
         String prop = CoreMidiLibrary.kMIDIPropertyName;
         Pointer kMIDIPropertyName =
-                CoreMidiLibrary.JNA_NATIVE_LIB
-                        .getGlobalVariableAddress(prop);
+                CoreMidiLibrary.JNA_NATIVE_LIB.getGlobalVariableAddress(prop);
         ID fromLong =
                 ID.fromLong(kMIDIPropertyName.getNativeLong(0).longValue());
         String result = Foundation.toString(fromLong);
-        System.out.println(result);
+        LOGGER.info(result);
         assertEquals("name", result);
     }
 
     @Test
     public void testGetProperty() {
-
 
         // Get ports
         int numberOfDevices =
@@ -92,18 +96,18 @@ public class CoreMidiLibraryTest {
             NativeLong deviceRef =
                     CoreMidiLibrary.INSTANCE.MIDIGetDevice(new NativeLong(i));
 
-            int NumEntities =
+            int numEntities =
                     CoreMidiLibrary.INSTANCE.MIDIDeviceGetNumberOfEntities(
                             deviceRef).intValue();
-            for (int j = 0; j < NumEntities; j++) {
+            for (int j = 0; j < numEntities; j++) {
                 NativeLong entDestination =
                         CoreMidiLibrary.INSTANCE.MIDIDeviceGetEntity(deviceRef,
                                 new NativeLong(j));
 
-                int NumSources =
+                int numSources =
                         CoreMidiLibrary.INSTANCE.MIDIEntityGetNumberOfSources(
                                 entDestination).intValue();
-                for (int k = 0; k < NumSources; k++) {
+                for (int k = 0; k < numSources; k++) {
                     NativeLong endpointref =
                             CoreMidiLibrary.INSTANCE.MIDIEntityGetSource(
                                     entDestination, new NativeLong(k));
@@ -118,8 +122,7 @@ public class CoreMidiLibraryTest {
                 CoreMidiLibrary.JNA_NATIVE_LIB
                         .getGlobalVariableAddress("kMIDIPropertyName");
         long longValue = kMIDIPropertyName.getNativeLong(0).longValue();
-        ID fromLong =
-                ID.fromLong(longValue);
+        ID fromLong = ID.fromLong(longValue);
 
         // Get property
         PointerByReference reference = new PointerByReference();
@@ -128,9 +131,9 @@ public class CoreMidiLibraryTest {
                         ref.longValue(), fromLong, reference);
         assertEquals(0, midiObjectGetStringProperty);
         Pointer value = reference.getValue();
-        int length = value.getByte(16);
-        String s = new String(value.getByteArray(17, length));
-        System.out.println("Length: " + length + ", " + s);
+        int length = value.getByte(LENGTH_BYTE);
+        String s = new String(value.getByteArray(LENGTH_BYTE + 1, length));
+        LOGGER.info("Length: " + length + ", " + s);
     }
 
 }
