@@ -33,11 +33,11 @@ import com.sun.jna.Pointer;
 import com.sun.jna.ptr.NativeLongByReference;
 import com.sun.jna.ptr.PointerByReference;
 
-public class CoreMidiLibraryTest {
+public class CoreMidiLibraryMacOsXTest {
 
     private static final int LENGTH_BYTE = 16;
     private static final Logger LOGGER = Logger
-            .getLogger(CoreMidiLibraryTest.class);
+            .getLogger(CoreMidiLibraryMacOsXTest.class);
 
     @Before
     public void setUp() throws Exception {

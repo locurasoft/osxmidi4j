@@ -15,15 +15,15 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
-package com.github.osxmidi4j;
+package com.github.osxmidi4j.midiservices;
 
-import static org.junit.Assert.assertNotNull;
+import javax.sound.midi.ShortMessage;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CoreMidiDeviceProviderTest {
+public class MIDIPacketListMacOsXTest {
 
     @Before
     public void setUp() throws Exception {
@@ -34,9 +34,11 @@ public class CoreMidiDeviceProviderTest {
     }
 
     @Test
-    public void testConstructor() throws CoreMidiException {
-        CoreMidiDeviceProvider tested = new CoreMidiDeviceProvider();
-        assertNotNull(tested.getClient());
-        assertNotNull(tested.getOutput());
+    public void testCreate() throws Exception {
+        ShortMessage m = new ShortMessage();
+        m.setMessage(ShortMessage.CONTROL_CHANGE, 0, 0);
+        MIDIPacketList tested = MIDIPacketList.Factory.newInstance();
+        tested.add(new MIDIPacket(m));
+        System.out.println();
     }
 }
