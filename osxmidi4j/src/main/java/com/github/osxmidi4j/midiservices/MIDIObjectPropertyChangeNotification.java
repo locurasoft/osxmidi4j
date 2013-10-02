@@ -45,9 +45,8 @@ public class MIDIObjectPropertyChangeNotification extends Structure {
                 "objectType", "propertyName");
     }
 
-    public MIDIObjectPropertyChangeNotification(final int messageID,
-            final int messageSize, final Pointer object, final int objectType,
-            final ID propertyName) {
+    public MIDIObjectPropertyChangeNotification(int messageID, int messageSize,
+            Pointer object, int objectType, ID propertyName) {
         super();
         this.messageID = messageID;
         this.messageSize = messageSize;

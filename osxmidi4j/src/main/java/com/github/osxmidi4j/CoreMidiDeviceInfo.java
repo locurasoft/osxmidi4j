@@ -20,10 +20,10 @@ package com.github.osxmidi4j;
 import javax.sound.midi.MidiDevice;
 
 public class CoreMidiDeviceInfo extends MidiDevice.Info {
-    private final Integer uid;
+    private Integer uid;
 
-    public CoreMidiDeviceInfo(final String name, final String vendor,
-            final String description, final String version, final Integer uid) {
+    public CoreMidiDeviceInfo(String name, String vendor, String description,
+            String version, Integer uid) {
         super(name, vendor, description, version);
         this.uid = uid;
     }

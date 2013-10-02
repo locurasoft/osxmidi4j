@@ -24,21 +24,21 @@ import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Receiver;
 import javax.sound.midi.Transmitter;
 
+
 import org.apache.log4j.Logger;
 
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary;
 
 public class CoreMidiDestination implements MidiDevice {
 
-    private static final Logger LOGGER = Logger
-            .getLogger(CoreMidiDestination.class);
-    private boolean destOpen = false;
+    private final Logger logger = Logger.getLogger(getClass());
+    private boolean open = false;
 
-    private final CoreMidiDeviceInfo info;
-    private final MidiEndpoint dest;
+    private CoreMidiDeviceInfo info;
+    private MidiEndpoint dest;
 
-    public CoreMidiDestination(final MidiEndpoint ep, final Integer uid,
-            final String namePrefix) throws CoreMidiException {
+    public CoreMidiDestination(MidiEndpoint ep, Integer uid, String namePrefix)
+            throws CoreMidiException {
         dest = ep;
         String name = "", vendor = "", description = "", version = "";
         try {
@@ -46,40 +46,40 @@ public class CoreMidiDestination implements MidiDevice {
                     namePrefix
                             + " "
                             + dest.getStringProperty(CoreMidiLibrary.kMIDIPropertyName);
-        } catch (final CoreMidiException e) {
-            LOGGER.warn(e.getMessage(), e);
+        } catch (CoreMidiException e) {
+            logger.warn(e.getMessage(), e);
         }
         try {
             version =
-                    Integer.toString(dest
-                            .getProperty(CoreMidiLibrary.kMIDIPropertyDriverVersion));
-        } catch (final CoreMidiException e) {
+                    ""
+                            + dest.getProperty(CoreMidiLibrary.kMIDIPropertyDriverVersion);
+            // CHECKSTYLE:OFF *
+        } catch (CoreMidiException e) {
             // Some ports don't have driver versions
-            LOGGER.debug(e.getMessage());
         }
+        // CHECKSTYLE:ON
         try {
             vendor =
                     dest.getStringProperty(CoreMidiLibrary.kMIDIPropertyManufacturer);
-        } catch (final CoreMidiException e) {
-            LOGGER.warn(e.getMessage(), e);
+        } catch (CoreMidiException e) {
+            logger.warn(e.getMessage(), e);
         }
         try {
             // Should I use something else for the description?
             description =
                     dest.getStringProperty(CoreMidiLibrary.kMIDIPropertyModel);
-        } catch (final CoreMidiException e) {
-            LOGGER.warn(e.getMessage(), e);
+        } catch (CoreMidiException e) {
+            logger.warn(e.getMessage(), e);
         }
         info = new CoreMidiDeviceInfo(name, vendor, description, version, uid);
     }
 
-    public CoreMidiDestination(final MidiEndpoint ep, final Integer uid)
-            throws CoreMidiException {
+    public CoreMidiDestination(MidiEndpoint ep, Integer uid) throws CoreMidiException {
         this(ep, uid, CoreMidiDeviceProvider.DEVICE_NAME_PREFIX);
     }
 
     public void close() {
-        destOpen = false;
+        open = false;
     }
 
     public MidiDevice.Info getDeviceInfo() {
@@ -102,14 +102,11 @@ public class CoreMidiDestination implements MidiDevice {
     }
 
     public boolean isOffline() {
-        boolean retVal = false;
         try {
-            retVal =
-                    dest.getProperty(CoreMidiLibrary.kMIDIPropertyOffline) == 1;
-        } catch (final CoreMidiException e) {
-            LOGGER.debug(e.getMessage(), e);
+            return dest.getProperty(CoreMidiLibrary.kMIDIPropertyOffline) == 1;
+        } catch (CoreMidiException e) {
+            return false;
         }
-        return retVal;
     }
 
     public Transmitter getTransmitter() throws MidiUnavailableException {
@@ -122,11 +119,11 @@ public class CoreMidiDestination implements MidiDevice {
     }
 
     public boolean isOpen() {
-        return destOpen;
+        return open;
     }
 
     public void open() {
-        destOpen = true;
+        open = true;
     }
 
     @Override

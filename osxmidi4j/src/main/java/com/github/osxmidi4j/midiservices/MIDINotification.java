@@ -39,7 +39,7 @@ public class MIDINotification extends Structure {
         return Arrays.asList("messageID", "messageSize");
     }
 
-    public MIDINotification(final int messageID, final int messageSize) {
+    public MIDINotification(int messageID, int messageSize) {
         super();
         this.messageID = messageID;
         this.messageSize = messageSize;
@@ -49,7 +49,7 @@ public class MIDINotification extends Structure {
         return messageID;
     }
 
-    public void setMessageID(final int messageID) {
+    public void setMessageID(int messageID) {
         this.messageID = messageID;
     }
 
@@ -57,7 +57,7 @@ public class MIDINotification extends Structure {
         return messageSize;
     }
 
-    public void setMessageSize(final int messageSize) {
+    public void setMessageSize(int messageSize) {
         this.messageSize = messageSize;
     };
 }

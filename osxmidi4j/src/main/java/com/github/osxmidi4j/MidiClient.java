@@ -17,7 +17,7 @@
 //
 package com.github.osxmidi4j;
 
-import org.apache.log4j.Logger;
+
 import org.rococoa.Foundation;
 import org.rococoa.ID;
 
@@ -29,48 +29,49 @@ import com.sun.jna.ptr.NativeLongByReference;
 
 public class MidiClient {
 
-    private static final Logger LOGGER = Logger.getLogger(MidiClient.class);
+    private NativeLong midiClientRef;
+    private NativeLong midiOutputPortRef;
+    private NativeLong midiInputPortRef;
 
-    private final NativeLong midiClientRef;
-
-    public MidiClient(final String string, final MIDINotifyProc notifyProc)
+    public MidiClient(String string, MIDINotifyProc notifyProc)
             throws CoreMidiException {
-        final ID name = Foundation.cfString(string);
-        final NativeLongByReference temp = new NativeLongByReference();
+        ID name = Foundation.cfString(string);
+        NativeLongByReference temp = new NativeLongByReference();
 
-        final int midiClientCreate =
+        int midiClientCreate =
                 CoreMidiLibrary.INSTANCE.MIDIClientCreate(name, notifyProc,
                         null, temp);
         if (midiClientCreate != 0) {
             throw new CoreMidiException(midiClientCreate);
         }
-        LOGGER.info("MidiClientRef: " + temp.getValue().longValue());
+        System.out.println("MidiClientRef: " + temp.getValue().longValue());
         midiClientRef = temp.getValue();
     }
 
-    public MidiOutputPort outputPortCreate(final String string)
-            throws CoreMidiException {
-        final NativeLongByReference temp = new NativeLongByReference();
-        final ID name = Foundation.cfString(string);
-        final int midiOutputPortCreate =
+    public MidiOutputPort outputPortCreate(String string) throws CoreMidiException {
+        NativeLongByReference temp = new NativeLongByReference();
+        ID name = Foundation.cfString(string);
+        int midiOutputPortCreate =
                 CoreMidiLibrary.INSTANCE.MIDIOutputPortCreate(midiClientRef,
                         name, temp);
         if (midiOutputPortCreate != 0) {
             throw new CoreMidiException(midiOutputPortCreate);
         }
-        return new MidiOutputPort(temp.getValue());
+        midiOutputPortRef = temp.getValue();
+        return new MidiOutputPort(midiOutputPortRef);
     }
 
-    public MidiInputPort inputPortCreate(final String name,
-            final MIDIReadProc readProc) throws CoreMidiException {
-        final NativeLongByReference temp = new NativeLongByReference();
-        final int midiInputPortCreate =
+    public MidiInputPort inputPortCreate(String name, MIDIReadProc readProc)
+            throws CoreMidiException {
+        NativeLongByReference temp = new NativeLongByReference();
+        int midiInputPortCreate =
                 CoreMidiLibrary.INSTANCE.MIDIInputPortCreate(midiClientRef,
                         Foundation.cfString(name), readProc, null, temp);
         if (midiInputPortCreate != 0) {
             throw new CoreMidiException(midiInputPortCreate);
         }
-        return new MidiInputPort(temp.getValue());
+        midiInputPortRef = temp.getValue();
+        return new MidiInputPort(midiInputPortRef);
     }
 
 }
