@@ -1,0 +1,8 @@
+<FindBugsFilter>
+     <Match>
+       <Class name="com.github.osxmidi4j.midiservices.MIDIIOErrorNotification" />
+       <Class name="com.github.osxmidi4j.midiservices.MIDIObjectAddRemoveNotification" />
+       <Class name="com.github.osxmidi4j.midiservices.MIDIObjectPropertyChangeNotification" />
+       <Bug code="UrF" />
+     </Match>
+</FindBugsFilter>
