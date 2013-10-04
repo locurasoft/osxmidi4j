@@ -66,7 +66,7 @@
                 <artifactId>findbugs-maven-plugin</artifactId>
                 <version>2.5.2</version>
                 <configuration>
-                    <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
+                    <excludeFilterFile>codeanalysis/findbugs-exclude.xml</excludeFilterFile>
                 </configuration>
             </plugin>
             <plugin>
