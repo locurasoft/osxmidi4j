@@ -186,15 +186,15 @@
    <rule ref="rulesets/java/controversial.xml/CallSuperInConstructor"/>
    <rule ref="rulesets/java/controversial.xml/UnnecessaryParentheses"/>
    <rule ref="rulesets/java/controversial.xml/BooleanInversion"/>
-   <rule ref="rulesets/java/controversial.xml/DataflowAnomalyAnalysis"/>
+<!--    <rule ref="rulesets/java/controversial.xml/DataflowAnomalyAnalysis"/> -->
    <rule ref="rulesets/java/controversial.xml/AvoidFinalLocalVariable"/>
    <rule ref="rulesets/java/controversial.xml/AvoidUsingShortType"/>
    <rule ref="rulesets/java/controversial.xml/AvoidUsingVolatile"/>
    <rule ref="rulesets/java/controversial.xml/AvoidUsingNativeCode"/>
    <rule ref="rulesets/java/controversial.xml/AvoidAccessibilityAlteration"/>
    <rule ref="rulesets/java/controversial.xml/DoNotCallGarbageCollectionExplicitly"/>
-   <rule ref="rulesets/java/naming.xml/ShortVariable"/>
-   <rule ref="rulesets/java/naming.xml/LongVariable"/>
+<!--    <rule ref="rulesets/java/naming.xml/ShortVariable"/> -->
+<!--    <rule ref="rulesets/java/naming.xml/LongVariable"/> -->
    <rule ref="rulesets/java/naming.xml/ShortMethodName"/>
    <rule ref="rulesets/java/naming.xml/VariableNamingConventions"/>
    <rule ref="rulesets/java/naming.xml/MethodNamingConventions"/>
@@ -230,7 +230,7 @@
    <rule ref="rulesets/java/finalizers.xml/AvoidCallingFinalize"/>
    <rule ref="rulesets/java/logging-jakarta-commons.xml/UseCorrectExceptionLogging"/>
    <rule ref="rulesets/java/logging-jakarta-commons.xml/ProperLogger"/>
-   <rule ref="rulesets/java/javabeans.xml/BeanMembersShouldSerialize"/>
+<!--    <rule ref="rulesets/java/javabeans.xml/BeanMembersShouldSerialize"/> -->
    <rule ref="rulesets/java/javabeans.xml/MissingSerialVersionUID"/>
    <rule ref="rulesets/java/clone.xml/ProperCloneImplementation"/>
    <rule ref="rulesets/java/clone.xml/CloneThrowsCloneNotSupportedException"/>

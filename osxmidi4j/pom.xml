@@ -74,6 +74,7 @@
                     <excludes>
                         <exclude>**/test/**</exclude>
                         <exclude>**/autotest/**</exclude>
+                        <exclude>**/CoreMidiLibrary.java</exclude>
                     </excludes>
                     <targetJdk>1.7</targetJdk>
                     <rulesets>
