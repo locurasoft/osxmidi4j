@@ -148,7 +148,7 @@
    <rule ref="rulesets/java/j2ee.xml/DoNotUseThreads"/>
    <rule ref="rulesets/java/optimizations.xml/LocalVariableCouldBeFinal"/>
    <rule ref="rulesets/java/optimizations.xml/MethodArgumentCouldBeFinal"/>
-   <rule ref="rulesets/java/optimizations.xml/AvoidInstantiatingObjectsInLoops"/>
+<!--    <rule ref="rulesets/java/optimizations.xml/AvoidInstantiatingObjectsInLoops"/> -->
    <rule ref="rulesets/java/optimizations.xml/UseArrayListInsteadOfVector"/>
    <rule ref="rulesets/java/optimizations.xml/SimplifyStartsWith"/>
    <rule ref="rulesets/java/optimizations.xml/UseStringBufferForStringAppends"/>
@@ -179,7 +179,7 @@
    <rule ref="rulesets/java/controversial.xml/UnnecessaryConstructor"/>
    <rule ref="rulesets/java/controversial.xml/NullAssignment"/>
    <!--rule ref="rulesets/java/controversial.xml/UnusedModifier"/-->
-   <rule ref="rulesets/java/controversial.xml/AssignmentInOperand"/>
+<!--    <rule ref="rulesets/java/controversial.xml/AssignmentInOperand"/> -->
    <rule ref="rulesets/java/controversial.xml/AtLeastOneConstructor"/>
    <rule ref="rulesets/java/controversial.xml/DontImportSun"/>
    <rule ref="rulesets/java/controversial.xml/SuspiciousOctalEscape"/>
@@ -187,7 +187,7 @@
    <rule ref="rulesets/java/controversial.xml/UnnecessaryParentheses"/>
    <rule ref="rulesets/java/controversial.xml/BooleanInversion"/>
 <!--    <rule ref="rulesets/java/controversial.xml/DataflowAnomalyAnalysis"/> -->
-   <rule ref="rulesets/java/controversial.xml/AvoidFinalLocalVariable"/>
+<!--    <rule ref="rulesets/java/controversial.xml/AvoidFinalLocalVariable"/> -->
    <rule ref="rulesets/java/controversial.xml/AvoidUsingShortType"/>
    <rule ref="rulesets/java/controversial.xml/AvoidUsingVolatile"/>
    <rule ref="rulesets/java/controversial.xml/AvoidUsingNativeCode"/>

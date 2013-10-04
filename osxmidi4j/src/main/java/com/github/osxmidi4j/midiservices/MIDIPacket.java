@@ -34,7 +34,7 @@ public class MIDIPacket extends Structure {
 
     // CHECKSTYLE:OFF Visibility
     public long timeStamp;
-    public short length;
+    public short length; // NOPMD 2013-10-04 21:52
     public byte[] data = new byte[DATA_SIZE + EXTRA_DATA_SIZE];
 
     // CHECKSTYLE:ON
@@ -42,11 +42,11 @@ public class MIDIPacket extends Structure {
     public MIDIPacket(final int bufferSize) {
         super();
         data = new byte[bufferSize];
-        length = (short) data.length;
+        length = (short) data.length; // NOPMD 2013-10-04 21:52
         allocateMemory();
     }
 
-    public MIDIPacket(final long timeStamp, final short length,
+    public MIDIPacket(final long timeStamp, final short length, // NOPMD 2013-10-04 21:52
             final byte[] data) {
         super();
         this.timeStamp = timeStamp;
@@ -70,7 +70,7 @@ public class MIDIPacket extends Structure {
                         (byte) msg.getStatus(), (byte) msg.getData1(),
                         (byte) msg.getData2() };
         System.arraycopy(src, 0, this.data, 0, src.length);
-        length = (short) src.length;
+        length = (short) src.length; // NOPMD 2013-10-04 21:52
         timeStamp = 0;
     }
 

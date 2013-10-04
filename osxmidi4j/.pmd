@@ -36,10 +36,6 @@
             <ruleset>Security Code Guidelines</ruleset>
         </rule>
         <rule>
-            <name>AssignmentInOperand</name>
-            <ruleset>Controversial Rules</ruleset>
-        </rule>
-        <rule>
             <name>AssignmentToNonFinalStatic</name>
             <ruleset>Design Rules</ruleset>
         </rule>
@@ -104,10 +100,6 @@
             <ruleset>Naming Rules</ruleset>
         </rule>
         <rule>
-            <name>AvoidFinalLocalVariable</name>
-            <ruleset>Controversial Rules</ruleset>
-        </rule>
-        <rule>
             <name>AvoidInstanceofChecksInCatchClause</name>
             <ruleset>Design Rules</ruleset>
         </rule>
@@ -166,6 +158,10 @@
         <rule>
             <name>AvoidUsingOctalValues</name>
             <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidUsingShortType</name>
+            <ruleset>Controversial Rules</ruleset>
         </rule>
         <rule>
             <name>AvoidUsingVolatile</name>

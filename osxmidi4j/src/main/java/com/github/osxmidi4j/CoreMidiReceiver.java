@@ -81,7 +81,7 @@ public class CoreMidiReceiver implements Receiver {
                 int read = 0;
                 while ((read = is.read(buf)) != -1) {
                     final MIDIPacket midiPacket =
-                            new MIDIPacket(timeStamp, (short) read, buf);
+                            new MIDIPacket(timeStamp, (short) read, buf); // NOPMD 2013-10-04 21:51
                     final MIDISysexSendRequest req =
                             MIDISysexSendRequest.newInstance(dest, midiPacket,
                                     new MIDICompletionCallback());
