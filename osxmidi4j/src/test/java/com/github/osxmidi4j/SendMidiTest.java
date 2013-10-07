@@ -109,9 +109,6 @@ public class SendMidiTest {
         Info[] midiDeviceInfos = MidiSystem.getMidiDeviceInfo();
         for (Info info : midiDeviceInfos) {
             if (info instanceof CoreMidiDeviceInfo) {
-                if (!"CoreMidi -  Plug 1".equals(info.getName())) {
-                    continue;
-                }
                 MidiDevice midiDevice = MidiSystem.getMidiDevice(info);
                 if (midiDevice.getMaxTransmitters() == -1) {
                     logger.info("Testing device " + info.getName());
@@ -141,7 +138,8 @@ public class SendMidiTest {
                                 byte[] message = arg0.getMessage();
                                 if ((message[0] & 0xFF) == SysexMessage.SPECIAL_SYSTEM_EXCLUSIVE) {
                                     message = new byte[arg0.getLength() - 1];
-                                    System.arraycopy(arg0.getMessage(), 1, message, 0, message.length);
+                                    System.arraycopy(arg0.getMessage(), 1,
+                                            message, 0, message.length);
                                 }
                                 assertArrayEquals(expected, message);
                             } catch (Exception e) {
@@ -161,6 +159,7 @@ public class SendMidiTest {
 
                     assertEquals(2, arrayIndex);
                     assertNull(failureMessage);
+                    break;
                 }
             }
         }

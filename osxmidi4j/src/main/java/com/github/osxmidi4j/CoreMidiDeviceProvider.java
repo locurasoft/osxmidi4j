@@ -97,18 +97,29 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
         }
         libfile.deleteOnExit(); // just in case
 
-        final InputStream in =
-                getClass().getResourceAsStream("/librococoa.dylib");
-        final OutputStream out =
-                new BufferedOutputStream(new FileOutputStream(libfile));
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+            in = getClass().getResourceAsStream("/librococoa.dylib");
 
-        int len = 0;
-        final byte[] buffer = new byte[BUFFER_SIZE];
-        while ((len = in.read(buffer)) > -1) {
-            out.write(buffer, 0, len);
+            out = new BufferedOutputStream(new FileOutputStream(libfile));
+
+            int len = 0;
+            final byte[] buffer = new byte[BUFFER_SIZE];
+            while ((len = in.read(buffer)) > -1) {
+                out.write(buffer, 0, len);
+            }
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+            } finally {
+                if (in != null) {
+                    in.close();
+                }
+            }
         }
-        out.close();
-        in.close();
 
         System.setProperty("java.library.path", "librococoa.dylib");
     }
