@@ -74,11 +74,11 @@
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.0.1</version>
                 <configuration>
-                    <excludes>
-                        <exclude>**/test/**</exclude>
-                        <exclude>**/autotest/**</exclude>
-                        <exclude>**/CoreMidiLibrary.java</exclude>
-                    </excludes>
+<!--                     <excludes> -->
+<!--                         <exclude>**/test/**</exclude> -->
+<!--                         <exclude>**/autotest/**</exclude> -->
+<!--                         <exclude>**/CoreMidiLibrary.java</exclude> -->
+<!--                     </excludes> -->
                     <targetJdk>1.7</targetJdk>
                     <rulesets>
                         <ruleset>codeanalysis/pmd-template.xml</ruleset>
