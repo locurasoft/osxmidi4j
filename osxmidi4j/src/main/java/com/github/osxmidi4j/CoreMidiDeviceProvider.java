@@ -100,7 +100,7 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
         InputStream in = null;
         OutputStream out = null;
         try {
-            in = getClass().getResourceAsStream("/librococoa.dylib");
+            in = getClass().getClassLoader().getResourceAsStream("librococoa.dylib");
 
             out = new BufferedOutputStream(new FileOutputStream(libfile));
 

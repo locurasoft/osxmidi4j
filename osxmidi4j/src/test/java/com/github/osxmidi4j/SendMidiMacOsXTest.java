@@ -144,14 +144,15 @@ public class SendMidiMacOsXTest {
 
                     assertEquals(list.size(), arrayIndex);
                     assertNull(failureMessage);
+                    break;
                 }
             }
         }
-        assertEquals(NUM_PORTS, portCount);
     }
 
     void sendMidiMessagesToPort(String portName, List<MidiMessage> messages)
             throws MidiUnavailableException, InvalidMidiDataException {
+        logger.info("Sending messages to port " + portName);
         failureMessage = null;
         arrayIndex = 0;
         Info[] midiDeviceInfos = MidiSystem.getMidiDeviceInfo();
