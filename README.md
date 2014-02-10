@@ -5,9 +5,6 @@ osxmidi4j provides the Java MIDI API including Sysex messages for the Mac OS X p
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EVSGMGG79CRPY)
 
-Tutorial:
----------
-
 Setup
 -----
 
