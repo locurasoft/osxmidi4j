@@ -46,8 +46,6 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
 
     private static final int DEVICE_MAP_SIZE = 20;
 
-    private static final MidiProperties PROPS = new MidiProperties();
-
     private static final class MidiProperties {
         private MidiClient client;
         private MidiOutputPort output;
@@ -55,6 +53,8 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
                 new LinkedHashMap<Integer, MidiDevice>(DEVICE_MAP_SIZE);
         private MIDINotifyProc notifyProc;
     }
+
+    private static final MidiProperties PROPS = new MidiProperties();
 
     private static final Logger LOG = Logger
             .getLogger(CoreMidiDeviceProvider.class);
@@ -100,7 +100,9 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
         InputStream in = null;
         OutputStream out = null;
         try {
-            in = getClass().getClassLoader().getResourceAsStream("librococoa.dylib");
+            in =
+                    getClass().getClassLoader().getResourceAsStream(
+                            "librococoa.dylib");
 
             out = new BufferedOutputStream(new FileOutputStream(libfile));
 
