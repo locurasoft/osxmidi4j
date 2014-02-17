@@ -18,12 +18,12 @@ osxmidi4j provides the Java MIDI API including Sysex messages for the Mac OS X p
 Add this dependency to your pom:
 ```
 <dependencies>
-    <dependency>
-        <groupId>com.locurasoft</groupId>
-        <artifactId>osxmidi4j</artifactId>
-        <version>1.0</version>
-    </dependency>
-  </dependencies>
+  <dependency>
+    <groupId>com.locurasoft</groupId>
+    <artifactId>osxmidi4j</artifactId>
+    <version>1.0</version>
+  </dependency>
+</dependencies>
 ```
 
 ###Java Extensions
