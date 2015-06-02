@@ -37,6 +37,7 @@ import com.github.osxmidi4j.midiservices.CoreMidiLibrary.MIDINotifyProc;
 import com.github.osxmidi4j.midiservices.MIDINotification;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
+import org.rococoa.Foundation;
 
 public class CoreMidiDeviceProvider extends MidiDeviceProvider {
 
@@ -68,12 +69,21 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
             if (PROPS.client == null) {
                 try {
                     initRococoa();
-                    PROPS.notifyProc = new NotificationReciever();
-                    PROPS.client =
-                            new MidiClient("CAProvider", PROPS.notifyProc);
-                    PROPS.output =
-                            PROPS.client
-                                    .outputPortCreate("CAMidiDeviceProvider Output");
+                    Foundation.runOnMainThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                PROPS.notifyProc = new NotificationReciever();
+                                PROPS.client =
+                                        new MidiClient("CAProvider", PROPS.notifyProc);
+                                PROPS.output =
+                                        PROPS.client
+                                                .outputPortCreate("CAMidiDeviceProvider Output");
+                            } catch (final Exception e) {
+                                LOG.warn("Problem setting up Core MIDI environment", e);
+                            }
+                        }
+                    },true);
                     buildDeviceMap();
                 } catch (final CoreMidiException e) {
                     LOG.warn(e.getMessage(), e);
