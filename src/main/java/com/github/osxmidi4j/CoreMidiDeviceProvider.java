@@ -123,7 +123,8 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
             }
         }
 
-        System.setProperty("java.library.path", "librococoa.dylib");
+        System.setProperty("java.library.path",
+                "librococoa.dylib:".concat(System.getProperty("java.library.path")));
     }
 
     final boolean isMac() {
