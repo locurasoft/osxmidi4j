@@ -55,8 +55,8 @@ public class CoreMidiSource implements MidiDevice, MIDIReadProc {
         source = ep;
         String name = "", vendor = "", description = "", version = "";
         try {
-            name = namePrefix
-                    + source.getStringProperty(CoreMidiLibrary.kMIDIPropertyName);
+            name = namePrefix +
+                    source.getStringProperty(CoreMidiLibrary.kMIDIPropertyName);
         } catch (final CoreMidiException e) {
             LOGGER.warn(e.getMessage(), e);
         }

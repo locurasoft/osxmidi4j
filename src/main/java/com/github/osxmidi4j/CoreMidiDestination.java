@@ -42,8 +42,8 @@ public class CoreMidiDestination implements MidiDevice {
         dest = ep;
         String name = "", vendor = "", description = "", version = "";
         try {
-            name = namePrefix
-                    + dest.getStringProperty(CoreMidiLibrary.kMIDIPropertyName);
+            name = namePrefix +
+                    dest.getStringProperty(CoreMidiLibrary.kMIDIPropertyName);
         } catch (final CoreMidiException e) {
             LOGGER.warn(e.getMessage(), e);
         }

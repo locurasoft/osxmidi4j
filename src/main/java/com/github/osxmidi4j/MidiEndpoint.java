@@ -17,7 +17,6 @@
 //
 package com.github.osxmidi4j;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.IntBuffer;
 
 import org.rococoa.ID;
@@ -50,7 +49,7 @@ public class MidiEndpoint {
                     + endpointref.longValue() + " "
                     + midiObjectGetIntegerProperty);
         }
-        return intBuffer.get();
+        return intBuffer.get() & 0xffffffff;
     }
 
     public String getStringProperty(final String kmidipropertydriverversion)
@@ -63,11 +62,7 @@ public class MidiEndpoint {
         if (midiObjectGetStringProperty == 0) {
             final Pointer value = reference.getValue();
             final int length = value.getByte(TWO_POINTERS_SIZE) & BYTE_MAX;
-            try {
-                return new String(value.getByteArray(TWO_POINTERS_SIZE + 1, length), "US-ASCII");
-            } catch (UnsupportedEncodingException e) {
-                throw new CoreMidiException("Unable to parse MIDI string property as US-ASCII", e);
-            }
+            return new String(value.getByteArray(TWO_POINTERS_SIZE + 1, length));
         } else {
             throw new CoreMidiException(midiObjectGetStringProperty);
         }
