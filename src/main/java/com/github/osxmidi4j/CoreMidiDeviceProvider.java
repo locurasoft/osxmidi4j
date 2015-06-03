@@ -45,6 +45,8 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
 
     public static final String DEVICE_NAME_PREFIX = "CoreMidi - ";
 
+    public static final String JNA_LIBRARY_PATH = "jna.library.path";
+
     private static final int DEVICE_MAP_SIZE = 20;
 
     private static final class MidiProperties {
@@ -83,7 +85,7 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
                                 LOG.warn("Problem setting up Core MIDI environment", e);
                             }
                         }
-                    },true);
+                    }, true);
                     buildDeviceMap();
                 } catch (final CoreMidiException e) {
                     LOG.warn(e.getMessage(), e);
@@ -107,20 +109,29 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
             return;
         }
 
-        // Create a temporary directory to add to our JNA library path. This can be done as a one-liner
-        // in Java 7 and later using Files.createTempDirectory, but for now remain backwards compatible.
+        // Create a temporary directory to add to our JNA library path. This can be done as a
+        // one-liner in Java 7 and later using Files.createTempDirectory, but for now remain
+        // backwards compatible.
         final File tempDir = File.createTempFile("jna", "dir");
-        tempDir.delete();
-        tempDir.mkdir();
-        LOG.info("librococoa.dylib not found in current directory, exporting to ".concat(tempDir.toString()));
+        if (!tempDir.delete()) {
+            LOG.error("Unable to make room for temporary directory to install librococoa.dylib");
+            return;
+        }
+        if (!tempDir.mkdir()) {
+            LOG.error("Unable to create temporary directory to install librococoa.dylib");
+            return;
+        }
+        LOG.info("librococoa.dylib not found in current directory, exporting to ".
+                concat(tempDir.toString()));
         final File libFile = new File(tempDir, "librococoa.dylib");
         tempDir.deleteOnExit();
         libFile.deleteOnExit();  // Arrange to clean up after ourselves
-        if (System.getProperty("jna.library.path") == null) {
-            System.setProperty("jna.library.path", tempDir.getAbsolutePath().toString());
+        if (System.getProperty(JNA_LIBRARY_PATH) == null) {
+            System.setProperty(JNA_LIBRARY_PATH, tempDir.getAbsolutePath().toString());
         } else {
-            System.setProperty("jna.library.path",
-                    tempDir.getAbsolutePath().toString().concat(":").concat(System.getProperty("jna.library.path")));
+            System.setProperty(JNA_LIBRARY_PATH,
+                    tempDir.getAbsolutePath().toString().concat(":").
+                            concat(System.getProperty(JNA_LIBRARY_PATH)));
         }
 
         InputStream in = null;

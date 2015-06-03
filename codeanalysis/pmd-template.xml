@@ -8,33 +8,33 @@
     <exclude-pattern>.*com.github.osxmidi4j.midiservices.CoreMidiLibrary.*</exclude-pattern>
     <exclude-pattern>**/test/**</exclude-pattern>
 
-    <rule ref="rulesets/java/basic.xml/EmptyCatchBlock" />
-    <rule ref="rulesets/java/basic.xml/EmptyIfStmt" />
-    <rule ref="rulesets/java/basic.xml/EmptyWhileStmt" />
-    <rule ref="rulesets/java/basic.xml/EmptyTryBlock" />
-    <rule ref="rulesets/java/basic.xml/EmptyFinallyBlock" />
-    <rule ref="rulesets/java/basic.xml/EmptySwitchStatements" />
+    <rule ref="rulesets/java/empty.xml/EmptyCatchBlock" />
+    <rule ref="rulesets/java/empty.xml/EmptyIfStmt" />
+    <rule ref="rulesets/java/empty.xml/EmptyWhileStmt" />
+    <rule ref="rulesets/java/empty.xml/EmptyTryBlock" />
+    <rule ref="rulesets/java/empty.xml/EmptyFinallyBlock" />
+    <rule ref="rulesets/java/empty.xml/EmptySwitchStatements" />
     <rule ref="rulesets/java/basic.xml/JumbledIncrementer" />
     <rule ref="rulesets/java/basic.xml/ForLoopShouldBeWhileLoop" />
-    <rule ref="rulesets/java/basic.xml/UnnecessaryConversionTemporary" />
+    <rule ref="rulesets/java/unnecessary.xml/UnnecessaryConversionTemporary" />
     <rule ref="rulesets/java/basic.xml/OverrideBothEqualsAndHashcode" />
     <rule ref="rulesets/java/basic.xml/DoubleCheckedLocking" />
     <rule ref="rulesets/java/basic.xml/ReturnFromFinallyBlock" />
-    <rule ref="rulesets/java/basic.xml/EmptySynchronizedBlock" />
-    <rule ref="rulesets/java/basic.xml/UnnecessaryReturn" />
-    <rule ref="rulesets/java/basic.xml/EmptyStaticInitializer" />
+    <rule ref="rulesets/java/empty.xml/EmptySynchronizedBlock" />
+    <rule ref="rulesets/java/unnecessary.xml/UnnecessaryReturn" />
+    <rule ref="rulesets/java/empty.xml/EmptyStaticInitializer" />
     <rule ref="rulesets/java/basic.xml/UnconditionalIfStatement" />
-    <rule ref="rulesets/java/basic.xml/EmptyStatementNotInLoop" />
+    <rule ref="rulesets/java/empty.xml/EmptyStatementNotInLoop" />
     <rule ref="rulesets/java/basic.xml/BooleanInstantiation" />
-    <rule ref="rulesets/java/basic.xml/UnnecessaryFinalModifier" />
+    <rule ref="rulesets/java/unnecessary.xml/UnnecessaryFinalModifier" />
     <rule ref="rulesets/java/basic.xml/CollapsibleIfStatements" />
-    <rule ref="rulesets/java/basic.xml/UselessOverridingMethod" />
+    <rule ref="rulesets/java/unnecessary.xml/UselessOverridingMethod" />
     <rule ref="rulesets/java/basic.xml/ClassCastExceptionWithToArray" />
     <rule
         ref="rulesets/java/basic.xml/AvoidDecimalLiteralsInBigDecimalConstructor" />
-    <rule ref="rulesets/java/basic.xml/UselessOperationOnImmutable" />
+    <rule ref="rulesets/java/unnecessary.xml/UselessOperationOnImmutable" />
     <rule ref="rulesets/java/basic.xml/MisplacedNullCheck" />
-    <rule ref="rulesets/java/basic.xml/UnusedNullCheckInEquals" />
+    <rule ref="rulesets/java/unnecessary.xml/UnusedNullCheckInEquals" />
     <rule ref="rulesets/java/basic.xml/AvoidThreadGroup" />
     <rule ref="rulesets/java/basic.xml/BrokenNullCheck" />
     <rule ref="rulesets/java/basic.xml/BigIntegerInstantiation" />
@@ -42,7 +42,7 @@
     <rule ref="rulesets/java/basic.xml/AvoidUsingHardCodedIP" />
     <rule ref="rulesets/java/basic.xml/CheckResultSet" />
     <rule ref="rulesets/java/basic.xml/AvoidMultipleUnaryOperators" />
-    <rule ref="rulesets/java/basic.xml/EmptyInitializer" />
+    <rule ref="rulesets/java/empty.xml/EmptyInitializer" />
     <rule ref="rulesets/java/typeresolution.xml/LooseCoupling" />
     <rule
         ref="rulesets/java/typeresolution.xml/CloneMethodMustImplementCloneable" />
@@ -53,7 +53,6 @@
     <rule ref="rulesets/java/braces.xml/WhileLoopsMustUseBraces" />
     <rule ref="rulesets/java/braces.xml/IfElseStmtsMustUseBraces" />
     <rule ref="rulesets/java/braces.xml/ForLoopsMustUseBraces" />
-    <rule ref="rulesets/java/design.xml/UseSingleton" />
     <rule ref="rulesets/java/design.xml/SimplifyBooleanReturns" />
     <rule ref="rulesets/java/design.xml/SimplifyBooleanExpressions" />
     <rule ref="rulesets/java/design.xml/SwitchStmtsShouldHaveDefault" />
@@ -269,7 +268,6 @@
     <rule ref="rulesets/java/logging-java.xml/LoggerIsNotStaticFinal" />
     <rule ref="rulesets/java/logging-java.xml/SystemPrintln" />
     <rule ref="rulesets/java/logging-java.xml/AvoidPrintStackTrace" />
-    <rule ref="rulesets/java/design.xml/UseSingleton" />
     <rule ref="rulesets/java/design.xml/SimplifyBooleanReturns" />
     <rule ref="rulesets/java/design.xml/SimplifyBooleanExpressions" />
     <rule ref="rulesets/java/design.xml/SwitchStmtsShouldHaveDefault" />
