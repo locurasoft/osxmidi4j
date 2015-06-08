@@ -37,6 +37,7 @@ import com.github.osxmidi4j.midiservices.CoreMidiLibrary.MIDINotifyProc;
 import com.github.osxmidi4j.midiservices.MIDINotification;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
+import org.rococoa.Foundation;
 
 public class CoreMidiDeviceProvider extends MidiDeviceProvider {
 
@@ -68,12 +69,21 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
             if (PROPS.client == null) {
                 try {
                     initRococoa();
-                    PROPS.notifyProc = new NotificationReciever();
-                    PROPS.client =
-                            new MidiClient("CAProvider", PROPS.notifyProc);
-                    PROPS.output =
-                            PROPS.client
-                                    .outputPortCreate("CAMidiDeviceProvider Output");
+                    Foundation.runOnMainThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                PROPS.notifyProc = new NotificationReciever();
+                                PROPS.client =
+                                        new MidiClient("CAProvider", PROPS.notifyProc);
+                                PROPS.output =
+                                        PROPS.client
+                                                .outputPortCreate("CAMidiDeviceProvider Output");
+                            } catch (final Exception e) {
+                                LOG.warn("Problem setting up Core MIDI environment", e);
+                            }
+                        }
+                    },true);
                     buildDeviceMap();
                 } catch (final CoreMidiException e) {
                     LOG.warn(e.getMessage(), e);
@@ -85,17 +95,33 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
         }
     }
 
+    static final String LIB_NAME = "librococoa.dylib";
+
     /*
-     * Copied from https://github.com/zeromq/jzmq/blob/master/src/org/zeromq/
+     * Converted to JNA from from https://github.com/zeromq/jzmq/blob/master/src/org/zeromq/
      * EmbeddedLibraryTools.java
      */
     final void initRococoa() throws IOException {
-        final File libfile = new File("librococoa.dylib");
-        if (libfile.exists()) {
-            // No need to create the file
+        if (new File(LIB_NAME).exists()) {
+            // The file exists in the current working directory, no need export a copy
             return;
         }
-        libfile.deleteOnExit(); // just in case
+
+        // Create a temporary directory to add to our JNA library path. This can be done as a one-liner
+        // in Java 7 and later using Files.createTempDirectory, but for now remain backwards compatible.
+        final File tempDir = File.createTempFile("jna", "dir");
+        tempDir.delete();
+        tempDir.mkdir();
+        LOG.info("librococoa.dylib not found in current directory, exporting to ".concat(tempDir.toString()));
+        final File libFile = new File(tempDir, "librococoa.dylib");
+        tempDir.deleteOnExit();
+        libFile.deleteOnExit();  // Arrange to clean up after ourselves
+        if (System.getProperty("jna.library.path") == null) {
+            System.setProperty("jna.library.path", tempDir.getAbsolutePath().toString());
+        } else {
+            System.setProperty("jna.library.path",
+                    tempDir.getAbsolutePath().toString().concat(":").concat(System.getProperty("jna.library.path")));
+        }
 
         InputStream in = null;
         OutputStream out = null;
@@ -104,7 +130,7 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
                     getClass().getClassLoader().getResourceAsStream(
                             "librococoa.dylib");
 
-            out = new BufferedOutputStream(new FileOutputStream(libfile));
+            out = new BufferedOutputStream(new FileOutputStream(libFile));
 
             int len = 0;
             final byte[] buffer = new byte[BUFFER_SIZE];
@@ -122,8 +148,6 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
                 }
             }
         }
-
-        System.setProperty("java.library.path", "librococoa.dylib");
     }
 
     final boolean isMac() {
