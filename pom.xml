@@ -2,17 +2,11 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
-
     <groupId>com.locurasoft</groupId>
     <artifactId>osxmidi4j</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <version>1.0.1</version>
 
+    <packaging>jar</packaging>
     <name>osxmidi4j</name>
     <description>osxmidi4j provides the Java MIDI API including Sysex messages for the Mac OS X platform.</description>
     <url>https://github.com/locurasoft/osxmidi4j</url>
