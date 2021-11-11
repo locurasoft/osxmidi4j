@@ -20,6 +20,7 @@ package com.github.osxmidi4j.midiservices;
 import java.nio.IntBuffer;
 
 import org.rococoa.ID;
+import org.rococoa.IDByReference;
 
 import com.sun.jna.Callback;
 import com.sun.jna.Library;
@@ -29,7 +30,6 @@ import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.PointerType;
 import com.sun.jna.ptr.NativeLongByReference;
-import com.sun.jna.ptr.PointerByReference;
 
 /**
  * JNA Wrapper for library <b>CoreMidi Framework</b><br>
@@ -49,7 +49,7 @@ public interface CoreMidiLibrary extends Library {
             "/System/Library/Frameworks/CoreMIDI.framework/CoreMIDI";
     NativeLibrary JNA_NATIVE_LIB = NativeLibrary
             .getInstance(CoreMidiLibrary.JNA_LIBRARY_NAME);
-    CoreMidiLibrary INSTANCE = (CoreMidiLibrary) Native.loadLibrary(
+    CoreMidiLibrary INSTANCE = Native.load(
             CoreMidiLibrary.JNA_LIBRARY_NAME, CoreMidiLibrary.class);
 
     int kMIDIInvalidClient = (int) -10830;
@@ -169,7 +169,7 @@ public interface CoreMidiLibrary extends Library {
     int MIDIObjectSetIntegerProperty(long obj, ID propertyID, int value);
 
     int MIDIObjectGetStringProperty(long obj, ID propertyID,
-            PointerByReference reference);
+            IDByReference reference);
 
     int MIDIObjectSetStringProperty(long obj, ID propertyID, ID str);
 

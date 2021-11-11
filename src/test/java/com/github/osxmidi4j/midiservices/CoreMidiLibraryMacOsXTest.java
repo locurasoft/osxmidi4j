@@ -17,29 +17,28 @@
 //
 package com.github.osxmidi4j.midiservices;
 
-import static org.junit.Assert.assertEquals;
-
 import org.apache.log4j.Logger;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.rococoa.Foundation;
 import org.rococoa.ID;
+import org.rococoa.IDByReference;
 
 import com.github.osxmidi4j.SendMidiTest;
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary.MIDINotifyProc;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.NativeLongByReference;
-import com.sun.jna.ptr.PointerByReference;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CoreMidiLibraryMacOsXTest {
 
-    private static final int LENGTH_BYTE = 16;
     private static final Logger LOGGER = Logger
             .getLogger(CoreMidiLibraryMacOsXTest.class);
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
 
         // Create client
@@ -60,7 +59,7 @@ public class CoreMidiLibraryMacOsXTest {
         LOGGER.info(midiClientCreate);
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
     }
 
@@ -125,15 +124,13 @@ public class CoreMidiLibraryMacOsXTest {
         ID fromLong = ID.fromLong(longValue);
 
         // Get property
-        PointerByReference reference = new PointerByReference();
+        IDByReference reference = new IDByReference();
         int midiObjectGetStringProperty =
                 CoreMidiLibrary.INSTANCE.MIDIObjectGetStringProperty(
                         ref.longValue(), fromLong, reference);
         assertEquals(0, midiObjectGetStringProperty);
-        Pointer value = reference.getValue();
-        int length = value.getByte(LENGTH_BYTE);
-        String s = new String(value.getByteArray(LENGTH_BYTE + 1, length));
-        LOGGER.info("Length: " + length + ", " + s);
+        String s = Foundation.toString(reference.getValue());
+        LOGGER.info("Length: " + s.length() + ", " + s);
     }
 
 }

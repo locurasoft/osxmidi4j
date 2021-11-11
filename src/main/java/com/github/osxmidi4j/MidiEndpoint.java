@@ -19,17 +19,19 @@ package com.github.osxmidi4j;
 
 import java.nio.IntBuffer;
 
+import org.apache.log4j.Logger;
+import org.rococoa.Foundation;
 import org.rococoa.ID;
+import org.rococoa.IDByReference;
 
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
-import com.sun.jna.ptr.PointerByReference;
 
 public class MidiEndpoint {
 
-    private static final int TWO_POINTERS_SIZE = 16;
-    private static final int BYTE_MAX = 0xFF;
+    private static final Logger LOGGER = Logger.getLogger(MidiEndpoint.class);
+
     private static final int BUFFER_SIZE = 256;
     private final NativeLong endpointref;
 
@@ -55,14 +57,13 @@ public class MidiEndpoint {
     public String getStringProperty(final String kmidipropertydriverversion)
             throws CoreMidiException {
         final ID propertyId = getPropertyId(kmidipropertydriverversion);
-        final PointerByReference reference = new PointerByReference();
+        final IDByReference reference = new IDByReference();
         final int midiObjectGetStringProperty =
                 CoreMidiLibrary.INSTANCE.MIDIObjectGetStringProperty(
                         endpointref.longValue(), propertyId, reference);
         if (midiObjectGetStringProperty == 0) {
-            final Pointer value = reference.getValue();
-            final int length = value.getByte(TWO_POINTERS_SIZE) & BYTE_MAX;
-            return new String(value.getByteArray(TWO_POINTERS_SIZE + 1, length));
+LOGGER.info("kmidipropertydriverversion: " + Foundation.toString(reference.getValue()));
+            return Foundation.toString(reference.getValue());
         } else {
             throw new CoreMidiException(midiObjectGetStringProperty);
         }
