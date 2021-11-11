@@ -23,7 +23,8 @@ import java.util.ServiceLoader;
 import javax.sound.midi.MidiDevice.Info;
 import javax.sound.midi.spi.MidiDeviceProvider;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class Main {
 
@@ -35,7 +36,7 @@ public final class Main {
      * MidiDeviceProvider
      */
     public static void main(final String[] args) {
-        final Logger logger = Logger.getLogger(Main.class);
+        final Logger logger = LogManager.getLogger(Main.class);
         final ServiceLoader<MidiDeviceProvider> serviceLoader =
                 ServiceLoader.load(MidiDeviceProvider.class);
         final Iterator<MidiDeviceProvider> iterator = serviceLoader.iterator();

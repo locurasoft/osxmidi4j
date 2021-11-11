@@ -24,13 +24,14 @@ import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Receiver;
 import javax.sound.midi.Transmitter;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary;
 
 public class CoreMidiDestination implements MidiDevice {
 
-    private static final Logger LOGGER = Logger
+    private static final Logger LOGGER = LogManager
             .getLogger(CoreMidiDestination.class);
     private boolean destOpen = false;
 

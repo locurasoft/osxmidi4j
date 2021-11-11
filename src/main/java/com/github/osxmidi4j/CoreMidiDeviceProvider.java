@@ -30,7 +30,8 @@ import java.util.Map;
 import javax.sound.midi.MidiDevice;
 import javax.sound.midi.spi.MidiDeviceProvider;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary;
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary.MIDINotifyProc;
@@ -56,7 +57,7 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
 
     private static final MidiProperties PROPS = new MidiProperties();
 
-    private static final Logger LOG = Logger
+    private static final Logger LOG = LogManager
             .getLogger(CoreMidiDeviceProvider.class);
 
     public CoreMidiDeviceProvider() throws CoreMidiException {

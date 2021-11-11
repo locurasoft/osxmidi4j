@@ -27,7 +27,8 @@ import javax.sound.midi.Receiver;
 import javax.sound.midi.ShortMessage;
 import javax.sound.midi.SysexMessage;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary;
 import com.github.osxmidi4j.midiservices.MIDIPacket;
@@ -38,7 +39,7 @@ import com.sun.jna.Pointer;
 
 public class CoreMidiReceiver implements Receiver {
 
-    private static final Logger LOGGER = Logger
+    private static final Logger LOGGER = LogManager
             .getLogger(CoreMidiReceiver.class);
     private final MidiEndpoint dest;
     private final Set<Pointer> sendRequests = new HashSet<Pointer>();

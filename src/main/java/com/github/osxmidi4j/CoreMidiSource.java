@@ -30,18 +30,19 @@ import javax.sound.midi.ShortMessage;
 import javax.sound.midi.SysexMessage;
 import javax.sound.midi.Transmitter;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.github.osxmidi4j.midiservices.CoreMidiLibrary;
+import com.github.osxmidi4j.midiservices.CoreMidiLibrary.MIDIReadProc;
 import com.github.osxmidi4j.midiservices.MIDIPacket;
 import com.github.osxmidi4j.midiservices.MIDIPacketList;
-import com.github.osxmidi4j.midiservices.CoreMidiLibrary.MIDIReadProc;
 import com.sun.jna.Pointer;
 
 public class CoreMidiSource implements MidiDevice, MIDIReadProc {
     private static final int HALF_BYTE = 0x80;
     private static final int BYTE_MAX = 0xFF;
-    private static final Logger LOGGER = Logger.getLogger(CoreMidiSource.class);
+    private static final Logger LOGGER = LogManager.getLogger(CoreMidiSource.class);
     private final List<Transmitter> transmitters;
     private boolean sourceOpen = false;
 

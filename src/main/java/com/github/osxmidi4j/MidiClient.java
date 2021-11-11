@@ -17,7 +17,8 @@
 //
 package com.github.osxmidi4j;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.rococoa.Foundation;
 import org.rococoa.ID;
 
@@ -29,7 +30,7 @@ import com.sun.jna.ptr.NativeLongByReference;
 
 public class MidiClient {
 
-    private static final Logger LOGGER = Logger.getLogger(MidiClient.class);
+    private static final Logger LOGGER = LogManager.getLogger(MidiClient.class);
 
     private final NativeLong midiClientRef;
 

@@ -19,7 +19,8 @@ package com.github.osxmidi4j;
 
 import java.nio.IntBuffer;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.rococoa.Foundation;
 import org.rococoa.ID;
 import org.rococoa.IDByReference;
@@ -30,7 +31,7 @@ import com.sun.jna.Pointer;
 
 public class MidiEndpoint {
 
-    private static final Logger LOGGER = Logger.getLogger(MidiEndpoint.class);
+    private static final Logger LOGGER = LogManager.getLogger(MidiEndpoint.class);
 
     private static final int BUFFER_SIZE = 256;
     private final NativeLong endpointref;
