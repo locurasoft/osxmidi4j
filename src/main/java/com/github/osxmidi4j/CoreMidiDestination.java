@@ -47,7 +47,8 @@ public class CoreMidiDestination implements MidiDevice {
                             + " "
                             + dest.getStringProperty(CoreMidiLibrary.kMIDIPropertyName);
         } catch (final CoreMidiException e) {
-            LOGGER.warn(e.getMessage(), e);
+            LOGGER.warn(CoreMidiLibrary.kMIDIPropertyName);
+            LOGGER.warn(e.getMessage());
         }
         try {
             version =
@@ -55,20 +56,23 @@ public class CoreMidiDestination implements MidiDevice {
                             .getProperty(CoreMidiLibrary.kMIDIPropertyDriverVersion));
         } catch (final CoreMidiException e) {
             // Some ports don't have driver versions
+            LOGGER.debug(CoreMidiLibrary.kMIDIPropertyDriverVersion);
             LOGGER.debug(e.getMessage());
         }
         try {
             vendor =
                     dest.getStringProperty(CoreMidiLibrary.kMIDIPropertyManufacturer);
         } catch (final CoreMidiException e) {
-            LOGGER.warn(e.getMessage(), e);
+            LOGGER.warn(CoreMidiLibrary.kMIDIPropertyManufacturer);
+            LOGGER.warn(e.getMessage());
         }
         try {
             // Should I use something else for the description?
             description =
                     dest.getStringProperty(CoreMidiLibrary.kMIDIPropertyModel);
         } catch (final CoreMidiException e) {
-            LOGGER.warn(e.getMessage(), e);
+            LOGGER.warn(CoreMidiLibrary.kMIDIPropertyModel);
+            LOGGER.warn(e.getMessage());
         }
         info = new CoreMidiDeviceInfo(name, vendor, description, version, uid);
     }
