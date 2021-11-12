@@ -128,13 +128,22 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.8.1</version>
+                <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <configuration>
+                          <debug>false</debug>
+                          <verbose>false</verbose>
+                          <failOnWarnings>false</failOnWarnings>
+                          <failOnError>false</failOnError>
+                          
+                          <additionalOptions>-Xdoclint:none -Xdoclint:-missing</additionalOptions>
+                          <doclint>none</doclint>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
