@@ -28,9 +28,6 @@ import org.apache.logging.log4j.Logger;
 
 public final class Main {
 
-    private Main() {
-    }
-
     /**
      * This main class only runs a test to list the found ports by each
      * MidiDeviceProvider

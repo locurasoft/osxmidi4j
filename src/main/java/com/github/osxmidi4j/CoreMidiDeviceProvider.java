@@ -17,12 +17,6 @@
 //
 package com.github.osxmidi4j;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -68,7 +62,6 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
         synchronized (LOG) {
             if (PROPS.client == null) {
                 try {
-                    initRococoa();
                     PROPS.notifyProc = new NotificationReciever();
                     PROPS.client =
                             new MidiClient("CAProvider", PROPS.notifyProc);
@@ -84,47 +77,6 @@ public class CoreMidiDeviceProvider extends MidiDeviceProvider {
                 }
             }
         }
-    }
-
-    /*
-     * Copied from https://github.com/zeromq/jzmq/blob/master/src/org/zeromq/
-     * EmbeddedLibraryTools.java
-     */
-    final void initRococoa() throws IOException {
-        final File libfile = new File("librococoa.dylib");
-        if (libfile.exists()) {
-            // No need to create the file
-            return;
-        }
-        libfile.deleteOnExit(); // just in case
-
-        InputStream in = null;
-        OutputStream out = null;
-        try {
-            in =
-                    getClass().getClassLoader().getResourceAsStream(
-                            "librococoa.dylib");
-
-            out = new BufferedOutputStream(new FileOutputStream(libfile));
-
-            int len = 0;
-            final byte[] buffer = new byte[BUFFER_SIZE];
-            while ((len = in.read(buffer)) > -1) {
-                out.write(buffer, 0, len);
-            }
-        } finally {
-            try {
-                if (out != null) {
-                    out.close();
-                }
-            } finally {
-                if (in != null) {
-                    in.close();
-                }
-            }
-        }
-
-        System.setProperty("java.library.path", "librococoa.dylib");
     }
 
     final boolean isMac() {

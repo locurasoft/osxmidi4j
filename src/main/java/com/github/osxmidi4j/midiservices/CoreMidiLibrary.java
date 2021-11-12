@@ -46,7 +46,7 @@ import com.sun.jna.ptr.NativeLongByReference;
 // CHECKSTYLE:OFF *
 public interface CoreMidiLibrary extends Library {
     String JNA_LIBRARY_NAME =
-            "/System/Library/Frameworks/CoreMIDI.framework/CoreMIDI";
+            "CoreMIDI";
     NativeLibrary JNA_NATIVE_LIB = NativeLibrary
             .getInstance(CoreMidiLibrary.JNA_LIBRARY_NAME);
     CoreMidiLibrary INSTANCE = Native.load(
