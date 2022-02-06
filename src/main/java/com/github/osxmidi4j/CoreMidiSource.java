@@ -204,8 +204,6 @@ public class CoreMidiSource implements MidiDevice, MIDIReadProc {
             }
 
             transmitMessage(msg);
-
-            return;
         } else {
             int d1, d2;
             final ShortMessage msg = new ShortMessage();
@@ -250,7 +248,11 @@ public class CoreMidiSource implements MidiDevice, MIDIReadProc {
             final Iterator<MIDIPacket> iterator = pktlist.iterator();
             while (iterator.hasNext()) {
                 final MIDIPacket midiPacket = iterator.next();
-                findMessages(midiPacket.getData());
+                if (midiPacket.getData().length > 0) {
+                    findMessages(midiPacket.getData());
+                } else {
+                    LOGGER.warn("0 length message");
+                }
             }
         } catch (final CoreMidiException e) {
             LOGGER.warn(e.getMessage(), e);
