@@ -60,8 +60,7 @@ public class MIDISysexSendRequest extends Structure {
         return newInstance;
     }
 
-    @SuppressWarnings("rawtypes")
-    protected List getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("destination", "data", "bytesToSend", "complete",
                 "reserved", "completionProc", "completionRefCon");
     }

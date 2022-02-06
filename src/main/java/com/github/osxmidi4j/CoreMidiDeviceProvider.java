@@ -35,8 +35,6 @@ import com.sun.jna.Pointer;
 
 public class CoreMidiDeviceProvider extends MidiDeviceProvider {
 
-    private static final int BUFFER_SIZE = 2048;
-
     public static final String DEVICE_NAME_PREFIX = "CoreMidi - ";
 
     private static final int DEVICE_MAP_SIZE = 20;

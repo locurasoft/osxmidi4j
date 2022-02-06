@@ -36,8 +36,7 @@ public class MIDIIOErrorNotification extends Structure {
         super();
     }
 
-    @SuppressWarnings("rawtypes")
-    protected List getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("messageID", "messageSize", "driverDevice",
                 "errorCode");
     }

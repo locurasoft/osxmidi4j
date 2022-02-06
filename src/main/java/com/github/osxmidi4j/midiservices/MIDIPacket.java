@@ -74,8 +74,7 @@ public class MIDIPacket extends Structure {
         timeStamp = 0;
     }
 
-    @SuppressWarnings("rawtypes")
-    protected List getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("timeStamp", "length", "data");
     }
 

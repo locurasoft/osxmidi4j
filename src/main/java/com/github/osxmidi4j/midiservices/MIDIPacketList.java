@@ -62,8 +62,7 @@ public class MIDIPacketList extends Structure {
         super(p);
     }
 
-    @SuppressWarnings("rawtypes")
-    protected List getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("numPackets", "packet");
     }
 
