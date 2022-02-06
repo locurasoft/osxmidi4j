@@ -17,7 +17,8 @@
 //
 package com.github.osxmidi4j.midiservices;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,8 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CoreMidiLibraryMacOsXTest {
 
-    private static final Logger LOGGER = Logger
-            .getLogger(CoreMidiLibraryMacOsXTest.class);
+    private static final Logger LOGGER = LogManager.getLogger(CoreMidiLibraryMacOsXTest.class);
 
     @BeforeEach
     public void setUp() throws Exception {
