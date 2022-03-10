@@ -4,7 +4,7 @@
 
     <groupId>com.locurasoft</groupId>
     <artifactId>osxmidi4j</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 
     <packaging>jar</packaging>
     <name>osxmidi4j</name>
@@ -33,7 +33,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <rococoa.version>0.8.3</rococoa.version>
+        <rococoa.version>0.8.4</rococoa.version>
     </properties>
 
     <build>
@@ -77,7 +77,7 @@
                           <verbose>false</verbose>
                           <failOnWarnings>false</failOnWarnings>
                           <failOnError>false</failOnError>
-                          
+
                           <additionalOptions>-Xdoclint:none -Xdoclint:-missing</additionalOptions>
                           <doclint>none</doclint>
                         </configuration>
@@ -144,7 +144,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
+          <groupId>org.apache.logging.log4j</groupId>
           <artifactId>log4j-api</artifactId>
           <version>2.17.1</version>
         </dependency>

@@ -1,5 +1,4 @@
-[![](https://jitpack.io/v/umjammer/osxmidi4j.svg)](https://jitpack.io/#umjammer/osxmidi4j)
- [![Java CI with Maven](https://github.com/umjammer/osxmidi4j/actions/workflows/maven.yml/badge.svg)](https://github.com/umjammer/osxmidi4j/actions/workflows/maven.yml)
+ [![Java CI](https://github.com/umjammer/osxmidi4j/actions/workflows/maven.yml/badge.svg)](https://github.com/umjammer/osxmidi4j/actions/workflows/maven.yml)
 
 osxmidi4j
 =========
