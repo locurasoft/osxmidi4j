@@ -1,4 +1,5 @@
- [![Java CI](https://github.com/umjammer/osxmidi4j/actions/workflows/maven.yml/badge.svg)](https://github.com/umjammer/osxmidi4j/actions/workflows/maven.yml)
+[![Java CI](https://github.com/umjammer/osxmidi4j/actions/workflows/maven.yml/badge.svg)](https://github.com/umjammer/osxmidi4j/actions/workflows/maven.yml)
+[![CodeQL](https://github.com/umjammer/osxmidi4j/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/umjammer/osxmidi4j/actions/workflows/codeql-analysis.yml)
 
 osxmidi4j
 =========
@@ -15,7 +16,7 @@ osxmidi4j provides the Java MIDI API including Sysex messages for the Mac OS X p
 
 ### Maven
 
- * [jitpack](https://jitpack.io/#umjammer/osxmidi4j)
+ * https://github.com/umjammer?tab=packages&repo_name=osxmidi4j
 
 ## Project info
 
