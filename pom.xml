@@ -36,6 +36,14 @@
         <rococoa.version>0.8.4</rococoa.version>
     </properties>
 
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub umjammer Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/umjammer/osxmidi4j</url>
+    </repository>
+  </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
